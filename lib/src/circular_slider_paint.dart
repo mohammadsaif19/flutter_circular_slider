@@ -29,7 +29,8 @@ class CircularSliderPaint extends StatefulWidget {
   late final bool showHandlerOutter;
   late final double sliderStrokeWidth;
   late final bool shouldCountLaps;
-
+  late final double smallStrokeWidth;
+  late final Color endCircleColor;
   CircularSliderPaint({
     required this.mode,
     required this.divisions,
@@ -48,6 +49,8 @@ class CircularSliderPaint extends StatefulWidget {
     required this.showHandlerOutter,
     required this.sliderStrokeWidth,
     required this.shouldCountLaps,
+    required this.smallStrokeWidth,
+    required this.endCircleColor,
   });
 
   @override
@@ -113,10 +116,10 @@ class _CircularSliderState extends State<CircularSliderPaint> {
         CustomPanGestureRecognizer:
             GestureRecognizerFactoryWithHandlers<CustomPanGestureRecognizer>(
           () => CustomPanGestureRecognizer(
-                onPanDown: _onPanDown,
-                onPanUpdate: _onPanUpdate,
-                onPanEnd: _onPanEnd,
-              ),
+            onPanDown: _onPanDown,
+            onPanUpdate: _onPanUpdate,
+            onPanEnd: _onPanEnd,
+          ),
           (CustomPanGestureRecognizer instance) {},
         ),
       },
@@ -185,6 +188,8 @@ class _CircularSliderState extends State<CircularSliderPaint> {
       showRoundedCapInSelection: widget.showRoundedCapInSelection,
       showHandlerOutter: widget.showHandlerOutter,
       sliderStrokeWidth: widget.sliderStrokeWidth,
+      smallStrokeWidth: widget.smallStrokeWidth,
+      endCircleColor: widget.endCircleColor,
     );
   }
 

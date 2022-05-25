@@ -66,7 +66,8 @@ class DoubleCircularSlider extends StatefulWidget {
   /// if true, the onSelectionChange will also return the number of laps in the slider
   /// otherwise, everytime the user completes a full lap, the selection restarts from 0
   final bool? shouldCountLaps;
-
+  final double smallStrokeWidth;
+  final Color endCircleColor;
   DoubleCircularSlider(
     this.divisions,
     this.init,
@@ -85,6 +86,8 @@ class DoubleCircularSlider extends StatefulWidget {
     this.showHandlerOutter,
     this.sliderStrokeWidth,
     this.shouldCountLaps,
+    required this.smallStrokeWidth,
+    required this.endCircleColor,
   })  : assert(init >= 0 && init <= divisions,
             'init has to be > 0 and < divisions value'),
         assert(end >= 0 && end <= divisions,
@@ -117,6 +120,8 @@ class _DoubleCircularSliderState extends State<DoubleCircularSlider> {
           init: _init,
           end: _end,
           divisions: widget.divisions,
+          smallStrokeWidth: widget.smallStrokeWidth,
+          endCircleColor: widget.endCircleColor,
           primarySectors: widget.primarySectors ?? 0,
           secondarySectors: widget.secondarySectors ?? 0,
           child: widget.child,

@@ -16,6 +16,8 @@ class SliderPainter extends CustomPainter {
   bool showRoundedCapInSelection;
   bool showHandlerOutter;
   double sliderStrokeWidth;
+  double smallStrokeWidth;
+  Color endCircleColor;
 
   late Offset initHandler;
   late Offset endHandler;
@@ -33,6 +35,8 @@ class SliderPainter extends CustomPainter {
     required this.showRoundedCapInSelection,
     required this.showHandlerOutter,
     required this.sliderStrokeWidth,
+    required this.smallStrokeWidth,
+    required this.endCircleColor,
   });
 
   @override
@@ -47,7 +51,7 @@ class SliderPainter extends CustomPainter {
 
     Paint handler = _getPaint(color: handlerColor, style: PaintingStyle.fill);
     Paint handlerEnd =
-        _getPaint(color: Color(0xFFB6B8F8), style: PaintingStyle.fill);
+        _getPaint(color: endCircleColor, style: PaintingStyle.fill);
 
     Paint handlerOutter = _getPaint(
       color: Colors.white,
@@ -59,7 +63,7 @@ class SliderPainter extends CustomPainter {
     if (mode == CircularSliderMode.doubleHandler) {
       initHandler = radiansToCoordinates(center, -pi / 2 + startAngle, radius);
       canvas.drawCircle(initHandler, handlerOutterRadius, handlerOutter);
-      canvas.drawCircle(initHandler, 8.0, handler);
+      canvas.drawCircle(initHandler, smallStrokeWidth, handler);
     }
 
     endHandler = radiansToCoordinates(center, -pi / 2 + endAngle, radius);
@@ -67,7 +71,7 @@ class SliderPainter extends CustomPainter {
     if (showHandlerOutter) {
       canvas.drawCircle(endHandler, handlerOutterRadius, handlerOutter);
     }
-    canvas.drawCircle(endHandler, 8.0, handlerEnd);
+    canvas.drawCircle(endHandler, smallStrokeWidth, handlerEnd);
   }
 
   Paint _getPaint(
